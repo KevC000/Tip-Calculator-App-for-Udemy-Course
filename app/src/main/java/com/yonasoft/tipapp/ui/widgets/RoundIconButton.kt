@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 
 val IconButtonSizeModifier = Modifier.size(40.dp)
 
+//circle shaped button for adding and decreasing the number people to split the bill with
 @Composable
 fun RoundIconButton(
     modifier: Modifier,

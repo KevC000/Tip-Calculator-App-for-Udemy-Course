@@ -19,6 +19,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+//Composable for text input for entering bill cost(before tip)
 @Composable
 fun InputField(
     modifier: Modifier = Modifier,

@@ -1,5 +1,7 @@
 package com.yonasoft.tipapp.util
+//This file is for helper functions
 
+//Function for calculating tip. Takes the total bill and gets the percentage of the amount
 fun calculateTip(
     totalBill: Double,
     percent: Int
@@ -13,6 +15,7 @@ fun calculateTip(
     }
 }
 
+//Calculates tip per person. Gets total bill, adds teh tip an divides by the number of people to split
 fun calculateTotalPerPerson(
     totalBill:Double,
     splitBy:Int,

@@ -47,15 +47,14 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
-
-
+//Composable for the container of the whole app.
 @Composable
 fun MyApp(content: @Composable () -> Unit) {
     Surface(color = MaterialTheme.colors.background) {
         content()
     }
 }
-
+//Preview for the app
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
@@ -63,7 +62,7 @@ fun DefaultPreview() {
         MainContent()
     }
 }
-
+//Composable for header the that shows the bill per person
 @Composable
 fun TopHeader(totalPerPerson: Double = 0.0) {
     Surface(
@@ -84,11 +83,13 @@ fun TopHeader(totalPerPerson: Double = 0.0) {
             verticalArrangement = Arrangement.Center
         ) {
             val total = "%.2f".format(totalPerPerson)
+            //Text description of the dollar value below this
             Text(
                 text = "Total Per Person",
                 style = MaterialTheme.typography.h5,
                 color = Color(0xFF000000)
             )
+            //Text that shows value of total bill per person
             Text(
                 text = "$${total}", style = MaterialTheme.typography.h4,
                 fontWeight = FontWeight.Bold,
@@ -97,8 +98,7 @@ fun TopHeader(totalPerPerson: Double = 0.0) {
         }
     }
 }
-
-
+//Container for the main part of the app, and its variables.
 @Composable
 fun MainContent() {
     val splitByState = remember {
@@ -111,7 +111,7 @@ fun MainContent() {
     val totalPerPerson = remember {
         mutableStateOf(0.0)
     }
-
+    //Bill form of the app that takes in parameters
     BillForm(splitByState = remember {
         mutableStateOf(1)
     }, tipAmountState = remember {
@@ -121,7 +121,7 @@ fun MainContent() {
     })
 
 }
-
+//Composable that combines header and the rest of the app
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun BillForm(
@@ -145,10 +145,8 @@ fun BillForm(
     }
     val tipPercentage = (sliderPositionState.value * 100).toInt()
 
-
-
     Column {
-
+        //Header which shows the total per person
         TopHeader(totalPerPerson.value)
 
         Surface(
@@ -177,6 +175,7 @@ fun BillForm(
                     }
                 )
 
+                //If input is valid it will show additional UI for adding additional info for calculating tip amount and total per person, otherwise it will show an empty box
                 if (validState) {
                     tipAmountState.value =
                         calculateTip(
@@ -226,7 +225,7 @@ fun BillForm(
                                 }
                             })
                     }
-
+                    //Tip amount based the slider percent and the current bill
                     Row(
                         modifier = modifier
                             .padding(3.dp, vertical = 12.dp),
@@ -243,6 +242,7 @@ fun BillForm(
                     Box {
                     }
                 }
+                //Slider for tip % and text of the % amount
                 Column(
                     verticalArrangement = Arrangement.Center,
                     horizontalAlignment = Alignment.CenterHorizontally
